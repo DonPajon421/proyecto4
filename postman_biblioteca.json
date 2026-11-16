@@ -1,0 +1,208 @@
+{
+  "info": {
+    "name": "Biblioteca proyecto4",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Crear libro (POST) -> 201",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/libro/crear",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Desolación\",\n  \"isbn\": \"9789561111111\",\n  \"anio_publicacion\": 1922,\n  \"autor\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "2. Crear libro (PUT) -> 201",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:8000/libro/crear",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Canto General\",\n  \"isbn\": \"9789562222222\",\n  \"anio_publicacion\": 1950,\n  \"autor\": 2\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "3. Crear ISBN repetido -> 400",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/libro/crear",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Otro\",\n  \"isbn\": \"9789561111111\",\n  \"anio_publicacion\": 2000,\n  \"autor\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "4. Crear autor inexistente -> 400",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/libro/crear",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Otro\",\n  \"isbn\": \"9789563333333\",\n  \"anio_publicacion\": 2000,\n  \"autor\": 999\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "5. Crear faltan datos -> 400",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8000/libro/crear",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Solo título\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "6. Listar libros (GET) -> 200",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:8000/libros",
+        "header": []
+      }
+    },
+    {
+      "name": "7. Modificar parcial (PATCH) -> 200",
+      "request": {
+        "method": "PATCH",
+        "url": "http://127.0.0.1:8000/libro/modificar/1",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Desolación (2.ª ed.)\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "8. Modificar dato inválido -> 400",
+      "request": {
+        "method": "PATCH",
+        "url": "http://127.0.0.1:8000/libro/modificar/1",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"anio_publicacion\": \"abc\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "9. Modificar id inexistente -> 404",
+      "request": {
+        "method": "PATCH",
+        "url": "http://127.0.0.1:8000/libro/modificar/9999",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"X\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "10. Eliminar (DELETE) -> 204",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:8000/libro/eliminar/2",
+        "header": []
+      }
+    },
+    {
+      "name": "11. Eliminar id inexistente -> 404",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:8000/libro/eliminar/9999",
+        "header": []
+      }
+    }
+  ]
+}
